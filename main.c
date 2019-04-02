@@ -1,17 +1,30 @@
-// this is main.c
-#include <stdio.h> 
-#include "screen.h" // for user-defined header, use double quotes 
-#include <stdlib.h>
-int main() {
-	int i, arr[80];
-	for(i = 0; i < 80; i++) {
-		arr[i] = rand()%70 + 30;
+#include <stdlib.h>		// for random numbers
+#include <time.h>		// for randomization (using system time)
+#include "screen.h"
+#include <stdio.h>
+#include "sound.h"
+
+int main(){
+	FILE *f;
+	short sd[80000];
+	for(;;){
+		system(RCMD); 		// have been defined in sound.h
+					//system ("arecord -r16000 -c1 -f S16_LE -d5 -q test.wav");
+		f = fopen("test.wav", "r");
+	if(f == NULL){
+		printf("Cannot open the file\n");
+		return 1;
 	}
+
 	clearScreen();
-	setColors(YELLOW, bg(BLUE)); 
-//	printf("Printed from main.\n");
-	barChart(arr);
+	setColors(RED, bg(YELLOW));
+	struct WAVHDR hdr;
+	fread(&hdr, sizeof(hdr), 1, f);		// read WAV header
+	fread(&sd, sizeof(sd), 1, f);		// read WAV data
+	fclose(f);
+	displayWAVHDR(hdr);
+	// displayWAVDATA();
+	}
 	resetColors();
-	printf("Another message\n");
 	getchar();
 }

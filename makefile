@@ -1,4 +1,4 @@
-OBJ = main.o screen.o
+OBJ = main.o screen.o sound.o
 APPNAME = sound.out
 
 $(APPNAME) : $(OBJ)
@@ -8,8 +8,7 @@ $(APPNAME) : $(OBJ)
 	gcc -c -o $@ $<
 
 clean :
-	rm $(OBJ) $(APPNAME)
-zip :
+	rm $(APPNAME) $(OBJ)
+
+tar :
 	tar cf sound.tar *.c *.h makefile
-
-
