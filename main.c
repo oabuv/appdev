@@ -19,7 +19,7 @@ int main(){
 	}
 
 	clearScreen();
-	setColors(RED, bg(PINK));
+	setColors(RED, bg(BLACK));
 	struct WAVHDR hdr;
 	fread(&hdr, sizeof(hdr), 1, f);		// read WAV header
 	fread(&sd, sizeof(sd), 1, f);		// read WAV data

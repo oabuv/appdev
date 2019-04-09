@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "screen.h"
 void barChart(int arr[]) {
 	int i, j; // counters
 	for(i = 0; i < 80; i++) { // for 80 columns
@@ -7,9 +8,10 @@ void barChart(int arr[]) {
 			#ifdef UNICODE
 				printf("%s", "\u2590");
 			#else
-				printf("%c", ' ');
+				printf("%c", '*');
 			#endif
-		}
+		
+}
 	}
 }
 void clearScreen(void) {

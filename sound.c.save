@@ -37,7 +37,6 @@ void showID(char *name, char *value){
 
 // function definition
 void displayWAVHDR(struct WAVHDR h){
-#ifdef DEBUG
 	showID("ChunkID", h.ChunkID);
 	printf("Chunk size: %d\n", h.ChunkSize);
 	showID("Format", h.Format);
@@ -51,15 +50,4 @@ void displayWAVHDR(struct WAVHDR h){
 	printf("Bits per sample: %d\n", h.BitsPerSample);
 	showID("Subchunk2ID", h.Subchunk2ID);
 	printf("Subchunk2 size: %d\n", h.Subchunk2Size);
-#else
-	setColors(RED, bg(BLUE));
-	printf("\033[1;1H");
-	printf("test.wav                    \n");
-	setColors(YELLOW, bg(GREEN));
-	printf("\033[1;21H");
-        printf("Sample reate=%d             \n", h.SampleRate);
-	 setColors(WHITE, bg(MAGENTA));
-        printf("\033[1;61H");
-        printf("Duration=%.2f               \n", (float)h.Subchunk2Size/h.ByteRate);
-#endif
 }
