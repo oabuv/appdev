@@ -19,28 +19,80 @@ a network connection, a microphone.
 
 1.1 Configuration USB sound card as default audio device
 
-.....
-
+	1.1.1.	Apply the USB sound card after booting up RPí. 
+		Use "lsusb" command to check if USB sound card is mounted.
+	1.1.2.	Use “sudo nano /etc/asound.conf” command and put following content to the file: 
+		"pcm.!default {
+		  type plug
+		  slave {
+		    pcm "hw:1,0"
+		  }
+		}
+		ctl.!default {
+			type hw
+			card 1
+		} "
+	1.1.3.	Use “nano .asoundrc” command and put the same content to the file at home directory.
+	1.1.4	Run “alsamixer” you can see that USB sound card is the default audio device. 
+		For a more sensitive sound detection. It is better to maximize the volume of “Mic”.
+	
 1.2 Install Libcurl library
 
-..
-
+	1.2.1	First use command "ls /usr/include/curl" or "ls /usr/include/arm-linux-gnueabihf/curl" 
+		to identify that libcurl library is installed.
+	1.2.2	If the folder doesn’t exist. 
+		Run “sudo apt-get update” to update the application list.
+	1.2.3	Run “sudo apt-get install libcurl3” to install the libcurl3.
+	1.2.4	Run “sudo apt-get install libcurl4-openssl-dev”
+		to install the development API of libcurl4.
 2. Installation Instructions
 
-..
+	2.1	In your installation directory. Use "make" command to create excutable file.
+	2.2	If the program runs in the right way and be sucessfully installed.
+		You should be able to see "sound.out" file in your files list.
 
 3. Operating Instructions
 
+3.1 Realtime sound recorder function
 
+	3.1.1	Run the program by using "./sound.out" command.
+	3.1.2	The program runs the infinite loop which will record the sound and show as the graph
+		with the bar chart.
+	3.1.3	To stop the program, use "Ctrl + C".
+3.2 Testtone generator function
+
+	3.2.1.	Using command "./sound.out 440" or "./sound.out 1000" to genenrate a testtone file.
+	3.2.2.	Choose the channel and the duration of the testtone.
+	3.2.3.	If testtone is succesfully generated, you should able to see "testTone.wav"
+		in your files list.
 
 4. File list (Manifest)
 
+	main.c
+	README
+	screen.c
+	screen.h
+	sound.c
+	sound.h
+	makefile
+	curltest.c
+	comm.c
+	comm.h
+	sound.php
 
 5. Copyright / Copyleft
 
+	Copyright © 2019 by Bao Vu
+	All rights reserved. This program or any portion thereof
+	may not be reproduced or used in any manner whatsoever
+	without the express written permission of the owner.
 
 6. Contact Information
 
+	mail:	oab.uv9@gmail.com
+	github:	https://github.com/oabuv
 
 7. Credits and Acknowledgements
 
+	Bao Vu, application developer.
+	Gao Chao, application development instructor.
