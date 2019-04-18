@@ -109,17 +109,10 @@ void testTone(int c, int f, float d){
 	h.NumChannels = c;
 	h.SampleRate = 44100;
 	h.BitsPerSample = 16;
-	//if(c==1){		// for mono channel
 	h.ByteRate = h.SampleRate * c * h.BitsPerSample / 8;
 	h.BlockAlign = c * h.BitsPerSample / 8;
 	h.Subchunk2Size = d * h.SampleRate * h.BlockAlign;
 	h.ChunkSize = h.Subchunk2Size + 36;
-	//}
-	// prepare sound data
-	/*short data[441000];	//[d*h.SampleRate]
-	for(int i=0; i<samples; i++){
-		data[i] = 32767.0*sin(2*PI*i*f/44100);
-	}*/
 	FILE *fp = fopen("testTone.wav", "w");
 	if(fp == NULL){
 		printf("we cannot open the file\n");
