@@ -117,7 +117,6 @@ void testTone(int c, int f, float d){
 	if(fp == NULL){
 		printf("we cannot open the file\n");
 		return;
-
 	}
 	fwrite(&h, sizeof(h), 1, fp);		// write the header
 	for(int i=0; i<samples; i++){
